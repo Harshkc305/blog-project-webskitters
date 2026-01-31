@@ -18,6 +18,11 @@ router.post("/reset-password/:id/:token",ejsAuthController.resetPassword);
 
 // admin dash board and log out----------------
 router.get("/adminDashboard", AuthCheckEjs,AdminAuthCheck,ejsAuthController.adminDashboard)
+
+router.get("/userpage", AuthCheckEjs,AdminAuthCheck,ejsAuthController.userPage)
+router.get("/deleteUser/:id", AuthCheckEjs,AdminAuthCheck,ejsAuthController.deleteUser)
+
+
 router.get("/logout", AuthCheckEjs,ejsAuthController.Logout)
 
 // register and login route-------------

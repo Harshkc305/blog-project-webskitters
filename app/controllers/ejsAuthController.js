@@ -359,15 +359,28 @@ async Logout(req, res) {
 
 // --------------------user page---------------------
 
+async userPage(req,res){
+    try{
+        const users= await User.find({role:"user"})
+        res.render("admin/userpage",{
+            title:"User Page",
+            data:users,
+            user:req.user
+        })
+    }catch(error){
+        console.log("error in getting user page",error);
+    }
+}
 
-
-
-
-
-
-
-
-
+async deleteUser(req,res){
+    try{
+        const id=req.params.id;
+        await User.findByIdAndDelete(id);
+        res.redirect("/userpage");
+    }catch(error){
+        console.log("error in deleting user",error);
+    }
+}
 
 }
 module.exports= new ejsAuthController();
