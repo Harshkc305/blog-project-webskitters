@@ -1,0 +1,65 @@
+<%- include("./layout/header") %>
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <%- include("./layout/sidebar") %>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Navbar -->
+        <%- include("./layout/navbar") %>
+        <!-- End of Navbar -->
+
+        <!-- Page Content -->
+        <div class="container-fluid">
+            <div class="productp">
+
+                <div class="card cardp">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="mb-0" style="font-family: 'Comfortaa';">➕ Add New Blog</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/createBlog" method="post" enctype="multipart/form-data">
+                            
+                            <!-- Name -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Blog Name</label>
+                                <input type="text" name="name" placeholder="Enter blog name" class="form-control rounded-pill shadow-sm" required />
+                            </div>
+                            
+                            <!-- Category -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Category</label>
+                                <input type="text" name="category" placeholder="Enter blog category" class="form-control rounded-pill shadow-sm" required />
+                            </div>
+                            
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Description</label>
+                                <textarea name="description" placeholder="Enter blog description" class="form-control rounded shadow-sm" rows="3" required></textarea>
+                            </div>
+                            
+
+                            <!-- Images -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Blog Images</label>
+                                <input type="file" name="image" class="form-control shadow-sm" multiple required />
+                                <small class="text-muted">You can upload multiple images.</small>
+                            </div>
+                            
+                            <!-- Submit -->
+                            <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                                Submit Blog
+                            </button>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Content -->
+
+        <%- include("./layout/footer") %>
+    </div>
+</div>

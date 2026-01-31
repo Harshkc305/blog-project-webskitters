@@ -1,0 +1,140 @@
+<%- include("./layout/header") %>
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <%- include("./layout/sidebar") %>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Navbar -->
+        <%- include("./layout/navbar") %>
+
+        <!-- Page Content -->
+        <div class="container-fluid mt-4">
+
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0" style="font-family: 'Comfortaa';">🛒 All Blogs</h5>
+                </div>
+
+                <div class="card-body table-responsive">
+
+                    <% if (data.length > 0) { %>
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Images</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Status</th>
+
+                                
+                                <th class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        <% data.forEach((item, index) => { %>
+                            <tr>
+                                <td><%= index + 1 %></td>
+
+                                
+                             
+<!-- IMAGE SLIDER -->
+<td style="width:200px;">
+  <div id="productCarousel-<%= item._id %>" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% if (Array.isArray(item.image) && item.image.length > 0) { %>
+        <% item.image.forEach((img, i) => { %>
+          <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+            <img src="<%= img %>" class="d-block w-100" 
+                 style="max-height:150px; object-fit:cover; border-radius:5px;">
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="carousel-item active">
+          <img src="https://via.placeholder.com/150" class="d-block w-100" 
+               style="max-height:150px; object-fit:cover; border-radius:5px;">
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Invisible Controls -->
+    <button class="carousel-control-prev invisible-btn" type="button" 
+            data-bs-target="#productCarousel-<%= item._id %>" data-bs-slide="prev">
+      <span class="visually-hidden"></span>
+    </button>
+    <button class="carousel-control-next invisible-btn" type="button" 
+            data-bs-target="#productCarousel-<%= item._id %>" data-bs-slide="next">
+      <span class="visually-hidden"></span>
+    </button>
+  </div>
+</td>
+
+
+
+    
+
+
+
+                                <td>
+                                    <strong><%= item.name %></strong><br>
+                                    <small class="text-muted"><%= item.description.slice(0,40) %>...</small>
+                                </td>
+
+                                <td><span class="badge bg-info text-dark rounded-pill"><%= item.category %></span></td>
+                                <td>
+    <% if (item.isDeleted) { %>
+        <span class="badge bg-danger rounded-pill">
+            Deleted (User)
+        </span>
+    <% } else { %>
+        <span class="badge bg-success rounded-pill">
+            Active
+        </span>
+    <% } %>
+</td>
+
+
+                                
+
+                                
+
+                                <!-- ACTIONS -->
+                                <td class="text-center">
+                                    <a href="/singleBlog/<%= item._id %>" class="btn btn-sm btn-outline-primary rounded-pill">
+                                        View
+                                    </a>
+                                    <a href="/editBlog/<%= item._id %>" class="btn btn-sm btn-outline-warning rounded-pill">
+                                        Edit
+                                    </a>
+                                    <a href="/deleteBlog/<%= item._id %>" 
+                                       class="btn btn-sm btn-outline-danger rounded-pill"
+                                       onclick="return confirm('Are you sure?')">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                        </tbody>
+                    </table>
+
+                    <% } else { %>
+                        <div class="text-center text-muted py-5">
+                            <h5>No Products Available</h5>
+                        </div>
+                    <% } %>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- End Page Content -->
+
+        <%- include("./layout/footer") %>
+
+    </div>
+</div>
